@@ -14,7 +14,7 @@ abstract class view
 			}
 			return $this->data[$name];
 		}else{
-			exit('View: '. $name .' Not found');
+			echo ('View: '. $name .' Not found');
 		}
 	}
 	
@@ -32,10 +32,6 @@ abstract class view
 		return $str;
 	}
 	
-	public function encode($html)
-	{
-		return htmlspecialchars($html);
-	}
 	
 	/**
 	abstract function title();

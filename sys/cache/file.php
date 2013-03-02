@@ -3,29 +3,35 @@ namespace sys\cache;
 
 final class file implements \sys\super\cache
 {
+	private $__value__ = array();
+	private $dir;
+
 	public function __construct(&$configure)
 	{
 		$this->dir = $configure['path'];
 	}
 	
-	public function get($name)
+	public function &__get($name)
 	{
-		$this->filename($name);
-		if( file_exists($name) ){
-			return file_get_contents($name);
+		$filename = $this->filename($name);
+		if( array_key_exists($name, $this->__value__) ){
+
+		}elseif( file_exists($filename) ){
+			$this->__value__[$name] = file_get_contents($filename);
 		}else{
-			return false;
+			$this->__value__[$name] = false;
 		}
+		return $this->__value__[$name];
 	}
 	
-	public function set($name, $value)
+	public function __set($name, $value)
 	{
-		$this->filename($name);
-		return file_put_contents($name, $value);
+		$filename = $this->filename($name);
+		return file_put_contents($filename, $value);
 	}
 	
 	private function filename(&$name)
 	{
-		$name = $this->dir.'/joanercache_'.dechex(crc32($name));
+		return $this->dir.'/joanercache_'.dechex(crc32($name));
 	}
 }

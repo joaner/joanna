@@ -1,26 +1,12 @@
 <?php
 namespace sys\super;
 
-abstract class router
+interface router
 {
-	/**
-	 * return the controller class name
-	 * @return string
-	 */
-	abstract function controller();
-	
-	/**
-	 * return the controller params
-	 * @return array
-	 */
-	abstract function params();
-	
-	
-	public function location(&$controller)
-	{
-		if( array_key_exists($controller, \configure::$router) ){
-			$controller = \configure::$router[$controller];
-		}
-	}
-	
+	// @return string : controller name
+	public function action();
+	// @return array : request param
+	public function params();
+	// @return string : controller name
+	public function rewrite($action);	
 }

@@ -1,6 +1,5 @@
 <?php
-isset($_SERVER['REQUEST_TIME_FLOAT']) || ($_SERVER['REQUEST_TIME_FLOAT']=microtime(true));
-define('START_TIME', $_SERVER['REQUEST_TIME_FLOAT']);
+define('START_TIME', microtime(true));
 define('APP', '\app');
 
 require 'bootstrap.php';
@@ -11,28 +10,27 @@ $cache  = \sys\cache::getInstance();
 $router = \sys\router::getInstance();
 
 
-$controllername = $router->controller();
-$router->location($controllername);
-
+$action = $router->action();
+$action = $router->rewrite($action);
 $params = $router->params();
 // $router->filter($params);
 
-$controllerclass = (APP .'\\controller\\'. $controllername);
+$actionclass = (APP .'\\controller\\'. $action);
 
-$controller = new $controllerclass();
+$controller = new $actionclass;
 
 unset($controllerclass, $controllername);
 
 $controller->init($params);
 $controller->run();
-$controller->out();
+$controller->push();
 
 // $event->outputBefore = new \sys\module\debug;
 // $event->outputBefore = new \sys\module\gzip;
 
 // $event->outputBefore = $controller->output;
 // $controller->output  = $event->outputBefore;
-var_dump($controller->output);
+
 echo $controller->output;
 
 // $event->outputAfter  = new \sys\module\cron;

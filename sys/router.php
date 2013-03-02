@@ -2,16 +2,7 @@
 namespace sys;
 
 final class router implements \sys\super\factory
-{
-	
-	private static $default = 'dispatch';
-	private static $param;
-	
-	
-	/**
-	 * 
-	 * @return object	new \sys\router\*
-	 */
+{	
 	public static function getInstance($name=null)
 	{
 		if( is_null($name) ){
@@ -22,15 +13,10 @@ final class router implements \sys\super\factory
 				break;
 				case 'cgi-fcgi':
 				default:
-					$name = 'dispatch';
+					$name =& \configure::$router['default'];
 			}
 		}
 		$classname = __CLASS__.'\\'.$name;
-		if( property_exists('\configure', __CLASS__) ){
-			self::$param =& \configure::${__CLASS__};
-		}
-		return new $classname(self::$param);
+		return new $classname;
 	}
-	
-
 }

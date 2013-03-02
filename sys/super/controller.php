@@ -8,15 +8,14 @@ abstract class controller
 	
 	public function init($params=null)
 	{
-		
 	}
 	
 	abstract function run();
 	
-	public function out()
+	public function push()
 	{
 		if( ! ($this->view instanceof \sys\super\view) ){
-			throw new Exception('The view class must extends \sys\super\view');
+			throw new CodeException();
 		}
 		$this->output = (string)$this->view;
 	}

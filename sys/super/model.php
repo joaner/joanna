@@ -3,12 +3,11 @@ namespace sys\super;
 
 abstract class model
 {
-	public static $expiretime = 60;
+	// cache expire time for second
+	const expiretime = 60;
+	// param data: "eventname => param"
 	private $__value__ = array();
-	
-	public function __construct()
-	{
-	}
+
 	
 	public function __call($name, $param)
 	{

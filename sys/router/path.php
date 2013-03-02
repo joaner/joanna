@@ -2,9 +2,9 @@
 namespace sys\router;
 
 
-final class dispatch extends \sys\super\router
+final class path implements \sys\super\router
 {
-	public function controller()
+	public function action()
 	{
 		$path = $this->getPath();
 		return $path;
@@ -15,7 +15,14 @@ final class dispatch extends \sys\super\router
 		return $_GET;
 	}
 	
-	
+	public function rewrite($action)
+	{
+		if( array_key_exists($action, \configure::$router['rule']) ){
+			$action = \configure::$router['rule'][$action];
+		}
+		return $action;
+	}	
+
 	private function getPath()
 	{
 		$path = $_SERVER['REQUEST_URI'];

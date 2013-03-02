@@ -2,9 +2,9 @@
 namespace sys\router;
 
 
-final class command extends \sys\super\router
+final class command implements \sys\super\router
 {
-	public function controller()
+	public function action()
 	{
 		global $argv;
 		
@@ -25,4 +25,8 @@ final class command extends \sys\super\router
 		return array_slice($argv, 3);
 	}
 	
+	public function rewrite($from, $to)
+	{
+
+	}
 }

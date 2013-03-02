@@ -26,10 +26,12 @@ function __autoload($classname)
 final class configure
 {
 	public static $router = array(
-		'' => 'index',
-		'__404__' => 'page404'
+		'default' => 'path',
+		'rule' => array(
+			'' => 'index',
+			'__404__' => 'page404'
+		)
 	);
-	
 	public static $cache = array(
 		'file' => array(
 			'time' => 3600,

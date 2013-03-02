@@ -1,7 +1,15 @@
 <?php
 namespace sys\super;
 
-abstract class module
+interface module
 {
-	
+	/**
+	 * @return boolean
+	 */
+	public static function check();
+
+	/**
+	 * @return boolean
+	 */
+	public function run(&$data, $event);
 }

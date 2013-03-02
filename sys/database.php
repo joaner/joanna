@@ -3,7 +3,8 @@ namespace sys;
 
 final class database implements \sys\super\factory
 {
-	protected static $_instance_;
+	protected static $instance;
+
 	public static function getInstance($name=null)
 	{
 		
@@ -17,7 +18,7 @@ final class database implements \sys\super\factory
 				$class = '\\PDO';
 		}
 		
-		self::$_instance_[$name] = new $class($dsn, $user, $pswd);
-		return self::$_instance_[$name];
+		self::$instance[$name] = new $class($dsn, $user, $pswd);
+		return self::$instance[$name];
 	}
 }
