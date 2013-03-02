@@ -1,7 +1,7 @@
 <?php
 namespace app\view;
 
-final class events extends \system\super\view
+final class events extends \sys\super\view
 {
 	public function title($title)
 	{
@@ -12,9 +12,12 @@ final class events extends \system\super\view
 		$this->title .= 'Events';
 	}
 	
-	public function link()
+	public function resource()
 	{
-		$this->link = '';
+		$this->resource = array(
+			array('mimetype'=>'application/x-javascript', 'src'=>'core.js'),
+			array('mimetype'=>'text/css', 'src'=>'core.css'),	
+		);
 	}
 	
 	public function header()

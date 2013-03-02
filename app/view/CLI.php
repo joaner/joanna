@@ -1,7 +1,7 @@
 <?php
 namespace app\view;
 
-final class CLI extends \system\super\view
+final class CLI extends \sys\super\view
 {
 	public function title($title)
 	{

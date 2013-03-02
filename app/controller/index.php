@@ -1,19 +1,23 @@
 <?php
 namespace app\controller;
 
-final class index extends \system\super\controller
+final class index extends \sys\super\controller
 {
 	
 	public function init($params=null)
 	{
 		parent::init();
-		$this->view = new \app\view\events;
+		$this->view = new \app\view\metro;
 	}
 	
 	public function run()
 	{
-		$this->view->title('index');
+		$test = new \app\model\getEventsList;
+		
+		$max = $test->getMax();
 
+		$this->view->title('index - '. $max);
+		$this->view->resource();
 		$this->view->header();
 		$this->view->article();
 		$this->view->footer();
