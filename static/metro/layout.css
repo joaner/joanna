@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+*{margin:auto; padding:auto;}
+body{width:100%;height:auto;}
+
+p{font-family: 'Julius Sans One', sans-serif;}
+#page{
+width:100%;
+}
+
+#header, #article, #footer{
+	width:970px;margin:18px auto; display: block;
+}
+
+#header{
+	height:80px; color:snow; position:relative;
+}
+#header header{
+	height:79px; position:absolute; width:100%;
+}
+
+#header #logoinfo{
+	float:left; width:240px; 
+}
+#logoinfo #logo{
+	width:240px; height:59px;
+}
+#logoinfo .border{
+	background-color:rgb(230, 105, 108); height:13px; width:100%;
+}
+
+#header #headerinfo{
+	float:right; width:680px;	
+}
+#header a{
+	color:rgb(50, 102, 194); text-decoration: none;
+}
+
+#header #userinfo{
+	height:39px; text-align:right; background-color:rgb(243, 142, 145);
+}
+#userinfo span{
+	marging:auto 10px;
+}
+#header #menu{
+	height:39px; width:100%; position:relative;bottom:0px;left:0px;
+	background-color: rgb(113, 152, 207); border-top:1px solid #fff;
+	text-align:center;
+}
+#menu ul{list-style-type:none; width:96%; padding:0px; margin:0px auto;}
+#menu ul li{
+	float:left; height:24px; background-color:snow;
+	text-align:center; padding:3px 4px 1px 4px; margin:5px 2px;
+	font:800 15px/24px 'Julius Sans One', sans-serif;
+	-webkit-transition: all .4s;
+}
+#menu ul li:hover{
+	background-color:rgb(243, 142, 145);
+}
+
+#article {
+	height:auto; position:relative;
+}
+
+#article #left{
+	width:30%; float:left;
+}
+#left .leftSide{
+	margin: 0px 1% 10px 0px; background-color:rgb(228, 235, 250);
+	min-height:300px;
+}
+
+#article #content{
+	background-color:rgb(243, 244, 247); float:right;
+	min-height:500px; width:67%; margin-left:1%;
+}
+
+
+#footer{
+	height:100px; background-color:rgb(252, 204, 57);
+	position:relative;
+}
