@@ -35,6 +35,9 @@ final class event
 			}
 			$this->__value__[$event] = $data;
 			foreach($this->$event as $call){
+				if( ! $call::check() ){
+					continue;
+				}
 				$call->run($this->__value__[$event]);
 			}
 		}
