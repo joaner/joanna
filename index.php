@@ -19,7 +19,7 @@ $actionclass = (APP .'\\controller\\'. $action);
 
 $controller = new $actionclass;
 
-unset($controllerclass, $controllername);
+unset($action, $actionclass);
 
 $controller->init($params);
 $controller->run();
@@ -33,4 +33,5 @@ $controller->push();
 
 echo $controller->output;
 
+var_dump(get_included_files(), microtime(true)-START_TIME);
 // $event->outputAfter  = new \sys\module\cron;

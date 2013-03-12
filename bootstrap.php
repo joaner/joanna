@@ -13,13 +13,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
 
+require 'sys/library/classPackage.php';
+
 
 function __autoload($classname)
 {
-	// defined('EVENT') && $GLOBALS['event']->classLoadBefore = null;
-	$file = str_replace('\\', '/', $classname);
-	require $file . '.php';
-	// defined('EVENT') && $GLOBALS['event']->classLoadAfter  = null;
+	\sys\library\classPackage::load($classname);
 }
 
 

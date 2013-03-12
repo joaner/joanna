@@ -1,5 +1,5 @@
 <?php
-namspace sys\super;
+namespace sys\super;
 
 interface library
 {

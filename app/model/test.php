@@ -9,7 +9,7 @@ final class test extends \sys\super\model
 	 * @expire 20000
 	 */
 	protected function run()
-	{var_dump($db);
+	{
 		$db = \sys\database::getInstance();
 		$sql = "create table 'hello'";
 		$db->query($sql);

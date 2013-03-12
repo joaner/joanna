@@ -25,7 +25,7 @@ final class command implements \sys\super\router
 		return array_slice($argv, 3);
 	}
 	
-	public function rewrite($from, $to)
+	public function rewrite($action)
 	{
 
 	}
