@@ -18,7 +18,7 @@ final class event
 		self::$__listen__[$event][] = $module;
 	}
 
-	public static function __callStatic($event, $data)
+	public static function &__callStatic($event, $data)
 	{
 		if( ! defined(__CLASS__.'::'.$event) ){
 			throw new CodeException();
@@ -36,7 +36,7 @@ final class event
 				}
 			}
 		}
-		return $data;
+		return $data[0];
 	}
 	
 }

@@ -26,7 +26,7 @@ $controller->run();
 $controller->push();
 
 
-\sys\event::outputBefore($controller->output);
+$controller->output = \sys\event::outputBefore($controller->output);
 
 echo $controller->output;
 
