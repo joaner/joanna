@@ -31,6 +31,13 @@ final class configure
 			'__404__' => 'page404'
 		)
 	);
+
+	public static $module = array(
+		'outputBefore' => array(
+			'debug'
+			),
+	);
+
 	public static $cache = array(
 		'file' => array(
 			'time' => 3600,

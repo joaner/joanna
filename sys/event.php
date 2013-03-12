@@ -3,53 +3,40 @@ namespace sys;
 
 final class event
 {
-	private $classLoadBefore;
-	private $classLoadAfter;
+	const classLoadBefore = 'output';
+	const classLoadAfter  = '';
 	
-	private $outputBefore;
-	private $outputAfter;
+	const outputBefore = 'boolean';
+	const outputAfter  = 'boolean';
 	
-	private $__value__;
-	
-	public function __construct()
+
+	private static $__listen__ = array();
+
+
+	public function addListen($event, $module)
 	{
-		define('EVENT', true);
+		self::$__listen__[$event][] = $module;
 	}
-	
-	public function __set($event, $data)
+
+	public static function __callStatic($event, $data)
 	{
-		if( ! property_exists($this, $event) ){
-			return ;
+		if( ! defined(__CLASS__.'::'.$event) ){
 			throw new CodeException();
 		}
-		if( is_object($data) && $data instanceof \sys\super\module ){
-			if( empty($this->$event) ){
-				$this->{$event} = array();
-			}
-			$this->{$event}[] = $data;	
-		}else{
-			if( empty($this->$event) ){
-				if( ! is_null($data) ){
-					throw new ParamException('you need first set the callback');
+		if( ! isset(self::$__listen__[$event]) ){
+			return $data;
+		}
+
+		foreach(self::$__listen__[$event] as $module){
+			if( $module::check() === true ){
+				$module = new $module;
+				$continue = $module->run($data, $event);
+				if( $continue === false ){
+					unset($module);
 				}
 			}
-			$this->__value__[$event] = $data;
-			foreach($this->$event as $call){
-				if( ! $call::check() ){
-					continue;
-				}
-				$call->run($this->__value__[$event]);
-			}
 		}
-		
-	}
-	
-	public function &__get($event)
-	{
-		if( ! array_key_exists($event, $this->__value__) ){
-			throw new CodeException();
-		}
-		return $this->__value__[$event];
+		return $data;
 	}
 	
 }

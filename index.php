@@ -2,9 +2,10 @@
 define('START_TIME', microtime(true));
 define('APP', '\app');
 
+require 'sys/event.php';
 require 'bootstrap.php';
 
-$event  = new \sys\event;
+\sys\module::bind();
 
 $cache  = \sys\cache::getInstance();
 $router = \sys\router::getInstance();
@@ -13,7 +14,6 @@ $router = \sys\router::getInstance();
 $action = $router->action();
 $action = $router->rewrite($action);
 $params = $router->params();
-// $router->filter($params);
 
 $actionclass = (APP .'\\controller\\'. $action);
 
@@ -25,13 +25,8 @@ $controller->init($params);
 $controller->run();
 $controller->push();
 
-// $event->outputBefore = new \sys\module\debug;
-// $event->outputBefore = new \sys\module\gzip;
 
-// $event->outputBefore = $controller->output;
-// $controller->output  = $event->outputBefore;
+\sys\event::outputBefore($controller->output);
 
 echo $controller->output;
 
-var_dump(get_included_files(), microtime(true)-START_TIME);
-// $event->outputAfter  = new \sys\module\cron;
