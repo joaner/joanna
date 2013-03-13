@@ -39,6 +39,7 @@ final class configure
 	);
 
 	public static $cache = array(
+		'default' => 'file',
 		'file' => array(
 			'time' => 3600,
 			'path' => TMP_DIR

@@ -1,26 +1,39 @@
 <?php
 namespace sys;
 
-final class cache implements \sys\super\factory
+use \sys\super\factory;
+use \configure;
+
+
+final class cache implements factory
 {
-	private static $default = 'file';
 	private static $param;
-	
+	private static $instance;
+
 	public static function getInstance($name=null)
 	{
-		if( extension_loaded('APC') ){
-			$class = 'APC';
-		}elseif( extension_loaded('memcached') ){
-			$class = 'memcached';
-		}else{
-			$class = self::$default;
-		}
+		if( ! (self::$instance instanceof \sys\super\cache) ){
+			switch($name)
+			{
+				case 'APC':
+					if( extension_loaded('APC') ){
+						break;
+					}
+				case 'memcached':
+					if( extension_loaded('memcached') ){
+						break;
+					}
+				default:
+					$name =& configure::$cache['default'];
+			}
 		
-		$classname = __CLASS__.'\\'.$class;
-		if( array_key_exists($class, \configure::$cache) ){
-			self::$param =& \configure::$cache[$class];
+			$classname = __CLASS__.'\\'.$name;
+			if( array_key_exists($name, configure::$cache) ){
+				self::$param =& configure::$cache[$name];
+			}
+			self::$instance = new $classname(self::$param);
 		}
-		return new $classname(self::$param);
+		return self::$instance;
 	}
 
 }

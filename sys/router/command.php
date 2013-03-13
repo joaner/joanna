@@ -8,7 +8,7 @@ final class command implements \sys\super\router
 	{
 		global $argv;
 		
-		$controller = '';
+		$controller = 'index';
 		if( isset($argv[1]) ){
 			$controller = $argv[1];
 			if( isset($argv[2]) && $argv[2]!=='NULL' ){

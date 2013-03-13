@@ -7,7 +7,9 @@ final class database implements \sys\super\factory
 
 	public static function getInstance($name=null)
 	{
-		
+		if( is_object(self::$instance) ){
+			return self::$instance;
+		}	
 		switch($name)
 		{
 			case 'PDO':

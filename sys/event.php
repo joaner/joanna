@@ -13,7 +13,7 @@ final class event
 	private static $__listen__ = array();
 
 
-	public function addListen($event, $module)
+	public static function addListen($event, $module)
 	{
 		self::$__listen__[$event][] = $module;
 	}
@@ -27,7 +27,7 @@ final class event
 			return $data;
 		}
 
-		foreach(self::$__listen__[$event] as $module){
+		foreach(self::$__listen__[$event] as &$module){
 			if( $module::check() === true ){
 				$module = new $module;
 				$continue = $module->run($data, $event);
