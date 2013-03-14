@@ -1,6 +1,9 @@
 <?php
 namespace sys;
 
+use \configure;
+
+
 final class database implements \sys\super\factory
 {
 	protected static $instance;
@@ -14,9 +17,9 @@ final class database implements \sys\super\factory
 		{
 			case 'PDO':
 			default:
-				$dsn  =& \configure::$database['dsn'];
-				$user =& \configure::$database['username'];
-				$pswd =& \configure::$database['password'];
+				$dsn  =& configure::$database['dsn'];
+				$user =& configure::$database['username'];
+				$pswd =& configure::$database['password'];
 				$class = '\\PDO';
 		}
 		

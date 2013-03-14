@@ -13,19 +13,20 @@ final class file implements \sys\super\cache
 	
 	public function &__get($name)
 	{
-		$filename = $this->filename($name);
-		if( array_key_exists($name, $this->__value__) ){
-
-		}elseif( file_exists($filename) ){
-			$this->__value__[$name] = file_get_contents($filename);
-		}else{
-			$this->__value__[$name] = false;
+		if( ! array_key_exists($name, $this->__value__) ){
+			$filename = $this->filename($name);
+			if( file_exists($filename) ){
+				$this->__value__[$name] = file_get_contents($filename);
+			}else{
+				$this->__value__[$name] = false;
+			}
 		}
 		return $this->__value__[$name];
 	}
 	
 	public function __set($name, $value)
 	{
+		$this->__value__[$name] = $value;
 		$filename = $this->filename($name);
 		return file_put_contents($filename, $value);
 	}

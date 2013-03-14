@@ -8,20 +8,11 @@ require 'bootstrap.php';
 \sys\module::bind();
 
 $cache  = \sys\cache::getInstance();
+
 $router = \sys\router::getInstance();
+$controller = \sys\router::getController($router);
 
-
-$action = $router->action();
-$action = $router->rewrite($action);
-$params = $router->params();
-
-$actionclass = (APP .'\\controller\\'. $action);
-
-$controller = new $actionclass;
-
-unset($action, $actionclass);
-
-$controller->init($params);
+$controller->init();
 $controller->run();
 $controller->push();
 
@@ -29,4 +20,3 @@ $controller->push();
 $controller->output = \sys\event::outputBefore($controller->output);
 
 echo $controller->output;
-

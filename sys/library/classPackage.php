@@ -1,9 +1,12 @@
 <?php
 namespace sys\library;
 
+use \sys\event;
+
+
 final class classPackage implements \sys\super\library
 {
-	public static function file($class)
+	public static function file(&$class)
 	{
 		return DIR. '/'. str_replace('\\', '/', $class) .'.php';
 	}
@@ -13,10 +16,10 @@ final class classPackage implements \sys\super\library
 		if( class_exists($class, false) ){
 			return ;
 		}
+
 		$file = self::file($class);
-		// defined('EVENT') && $GLOBALS['event']->classLoadBefore = null;
+		$file = event::loadClassBefore($file);
     	require $file;
-    	// defined('EVENT') && $GLOBALS['event']->classLoadAfter  = null;
 	}
 
 }

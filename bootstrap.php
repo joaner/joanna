@@ -34,7 +34,8 @@ final class configure
 
 	public static $module = array(
 		'outputBefore' => array(
-			'debug'
+			'debug',
+			'gzip'
 			),
 	);
 
