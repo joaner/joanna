@@ -11,5 +11,5 @@ interface module
 	/**
 	 * @return boolean
 	 */
-	public function run(&$data, $event);
+	public function run($event, &$data);
 }

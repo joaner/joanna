@@ -8,7 +8,7 @@ final class debug implements \sys\super\module
 		return !headers_sent();
 	}
 
-	public function run(&$output, $event)
+	public function run($event, &$output)
 	{
 		header('X-Runtime: '. round((microtime(true)-START_TIME)*1000, 1) );
 		header('X-Included-Files: '. count(get_included_files()) );

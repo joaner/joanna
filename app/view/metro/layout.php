@@ -6,7 +6,8 @@ namespace app\view\metro;
 <head>
 <meta charset="utf-8" />
 <title><?php echo $this->title; ?></title>
-<link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+-->
 <?php
 if( is_array($this->resource) ):
 foreach($this->resource as &$resource){
@@ -29,7 +30,9 @@ endif; ?>
 <div id="header" class="font-header">
 <header>
 <div id="logoinfo">
+	<!--
 	<img id="logo" src="http://www.foreignercn.com/info/statics/images/info/foreigner_logo.png" />
+	-->
 	<div class="border"></div>
 </div>
 <div id="headerinfo">

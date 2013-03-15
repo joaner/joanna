@@ -14,7 +14,7 @@ final class gzip implements \sys\super\module
 		return false;
 	}
 	
-	public function run(&$output, $event)
+	public function run($event, &$output)
 	{
 		$output = gzencode($output, 9);
 		header('Content-Encoding: gzip');

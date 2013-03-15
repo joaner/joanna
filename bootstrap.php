@@ -9,6 +9,8 @@ define('DIR', __DIR__);
 define('TMP_DIR', sys_get_temp_dir());
 define('TIME', time());
 
+define('SKIP', '__skip__');
+
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
@@ -35,8 +37,14 @@ final class configure
 	public static $module = array(
 		'outputBefore' => array(
 			'debug',
-			'gzip'
+//			'gzip'
 			),
+		'modelExecBefore' => array(
+			'comment'
+			),
+		'modelExecAfter' => array(
+			'comment'
+			)
 	);
 
 	public static $cache = array(

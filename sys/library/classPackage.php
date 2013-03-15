@@ -16,8 +16,10 @@ final class classPackage implements \sys\super\library
 		if( class_exists($class, false) ){
 			return ;
 		}
-
 		$file = self::file($class);
+		if( ! file_exists($file) ){
+			throw new \Exception();
+		}
 		$file = event::loadClassBefore($file);
     	require $file;
 	}
