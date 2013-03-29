@@ -1,7 +1,8 @@
 <?php
-/**
- * @namespace \
- */
+// @namespace \
+
+use \system\library\classPackage;
+
 
 define('PATH', '/joanna');
 define('DIR', __DIR__);
@@ -18,13 +19,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
 
-
-require 'sys/library/classPackage.php';
+require 'system/library/classPackage.php';
 
 
 function __autoload($classname)
 {
-	\sys\library\classPackage::load($classname);
+	classPackage::load($classname);
 }
 
 
@@ -38,10 +38,9 @@ final class configure
 		)
 	);
 
-	public static $module = array(
+	public static $event = array(
 		'outputBefore' => array(
-			'debug',
-			'gzip'
+			'debug', 'gzip'
 			),
 		'modelExecBefore' => array(
 			'comment'
@@ -60,8 +59,7 @@ final class configure
 	);
 	
 	public static $database = array(
-		
-		'dsn' => 'sqlite:/opt/database/joanna.sq3',// 'sqlite::memory:',
+		'dsn' => 'sqlite:/opt/database/joanna.sq3',
 		'username' => null,
 		'password' => null,
 		/*

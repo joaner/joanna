@@ -1,22 +1,24 @@
 <?php
 define('START_TIME', microtime(true));
-define('APP', '\app');
+define('APP', '\application');
 
-require 'sys/event.php';
-require 'bootstrap.php';
+require 'system/event.php';
+require 'config.php';
 
-\sys\module::bind();
+use \system\event;
+use \system\module;
+use \system\router;
+use \system\cache;
 
-$cache  = \sys\cache::getInstance();
+event::listen();
 
-$router = \sys\router::getInstance();
-$controller = \sys\router::getController($router);
+
+cache::getInstance();
+$router = router::getInstance();
+$controller = router::getController($router);
 
 $controller->init();
 $controller->run();
 $controller->push();
-
-
-$controller->output = \sys\event::outputBefore($controller->output);
 
 echo $controller->output;
