@@ -31,13 +31,4 @@ abstract class view
 		ob_end_clean();
 		return $str;
 	}
-	
-	
-	/**
-	abstract function title();
-	abstract function link();
-	abstract function header();
-	abstract function article();
-	abstract function footer();
-	*/
 }

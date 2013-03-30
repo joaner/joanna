@@ -8,23 +8,17 @@ use \system\module;
 final class event
 {
 
-	public static function &__callStatic($name, $box)
+	public static function __callStatic($name, array $object)
 	{
-		if( is_array($box) && count($box)===1 ){
-			$box = $box[0];
-		}
-
-
+		$object = array_shift($object);
 		if( isset(configure::$event[$name]) ){
 			foreach(configure::$event[$name] as $module){
 				$module = module::getInstance($module);
 				if( $module->init($name) ){
-					$module->run($box);
+					$module->run($object);
 				}
 			}
 		}
-		
-		return $box;
 	}
-	
+
 }

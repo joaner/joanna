@@ -2,12 +2,14 @@
 namespace system\library;
 
 use \system\super\library;
-use \system\exception\codeException;
 use \system\event;
 
 final class classPackage implements library
 {
-	public static function file(&$class)
+	public static $file;
+	public static $class;
+
+	public static function file($class)
 	{
 		return DIR. '/'. str_replace('\\', '/', $class) .'.php';
 	}
@@ -17,12 +19,12 @@ final class classPackage implements library
 		if( class_exists($class, false) ){
 			return ;
 		}
-		$file = self::file($class);
-		if( ! file_exists($file) ){
-			throw new codeException();
-		}
-		$file = event::loadClassBefore($file);
-    	require $file;
+		self::$class[] = $class;
+		self::$file = self::file($class);
+if( ! file_exists(self::$file) )
+	var_dump( (new \Exception())->getTrace() );
+		event::loadClassBefore(__CLASS__);
+    	require self::$file;
 	}
 
 }

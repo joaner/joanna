@@ -16,10 +16,10 @@ final class gzip implements module
 		return false;
 	}
 	
-	public function run(&$output)
+	public function run($controller)
 	{
-		$output = gzencode($output, 9);
+		$controller->output = gzencode($controller->output, 9);
 		header('Content-Encoding: gzip');
-		header('Content-Length: '. strlen($output));
+		header('Content-Length: '. strlen($controller->output));
 	}
 }

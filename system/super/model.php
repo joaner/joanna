@@ -16,9 +16,6 @@ abstract class model
 	
 	public function &__call($name, $param)
 	{
-		if( ! method_exists($this, $name) ){
-			throw new codeException();
-		}
 		$this->method = $name;
 
 		$ref = new reflection($this, $this->method);

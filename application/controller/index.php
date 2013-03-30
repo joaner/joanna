@@ -11,7 +11,6 @@ final class index extends controller
 	
 	public function init($params=null)
 	{
-		parent::init();
 		$this->view = new metro;
 	}
 	

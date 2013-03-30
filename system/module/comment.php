@@ -13,7 +13,7 @@ final class comment implements module
 		return true;
 	}
 
-	public function run(&$box)
+	public function run($box)
 	{
 		switch($this->event){
 			case 'modelExecBefore':

@@ -21,4 +21,3 @@ $controller->init();
 $controller->run();
 $controller->push();
 
-echo $controller->output;
