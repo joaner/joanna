@@ -20,6 +20,6 @@ final class debug implements module
 		foreach($included as &$file){
 			$file = str_replace(DIR, '', $file);
 		}
-		$controller->output = str_replace('</body>', implode(PHP_EOL, $included)."\n</body>", $controller->output);
+		str_replace('</body>', implode(PHP_EOL, $included)."\n</body>", $controller->output);
 	}
 }

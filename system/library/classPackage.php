@@ -7,24 +7,24 @@ use \system\event;
 final class classPackage implements library
 {
 	public static $file;
-	public static $class;
-
-	public static function file($class)
-	{
-		return DIR. '/'. str_replace('\\', '/', $class) .'.php';
-	}
+	public static $class = array();
 
 	public static function load($class)
 	{
-		if( class_exists($class, false) ){
+		if( class_exists($class, false) || interface_exists($class, false) ){
 			return ;
 		}
-		self::$class[] = $class;
+		if( ! is_null(\scriptcache::$scripts) ){
+			\scriptcache::$update[] = $class;
+		}	
+
 		self::$file = self::file($class);
-if( ! file_exists(self::$file) )
-	var_dump( (new \Exception())->getTrace() );
-		event::loadClassBefore(__CLASS__);
     	require self::$file;
 	}
+
+	public static function file($class)
+    {
+        return DIR. '/'. str_replace('\\', '/', $class) .'.php';
+    }
 
 }

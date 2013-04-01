@@ -14,7 +14,7 @@ final class event
 		if( isset(configure::$event[$name]) ){
 			foreach(configure::$event[$name] as $module){
 				$module = module::getInstance($module);
-				if( $module->init($name) ){
+				if( $module && $module->init($name) ){
 					$module->run($object);
 				}
 			}

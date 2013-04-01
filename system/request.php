@@ -6,7 +6,7 @@ use \configure;
 
 
 
-final class router implements factory
+final class request implements factory
 {
 	public static function getInstance($name=null)
 	{
@@ -21,7 +21,7 @@ final class router implements factory
 					$name =& configure::$router['default'];
 			}
 		}
-		$classname = __CLASS__.'\\'.$name;
+		$classname = '\\system\\router\\'.$name;
 		return new $classname;
 	}
 
@@ -33,6 +33,7 @@ final class router implements factory
 
 		$actionclass = (APP .'\\controller\\'. $action);
 
+		event::initControllerBefore($actionclass);
 		return new $actionclass($params);
 	}
 }

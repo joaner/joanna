@@ -11,6 +11,9 @@ final class module implements factory
 	{
 		if( ! isset(self::$instance[$name]) ){
 			$classname = __CLASS__ .'\\'. $name;
+			if( ! class_exists($classname) ){
+				return false;
+			}
 			self::$instance[$name] = new $classname;
 		}
 

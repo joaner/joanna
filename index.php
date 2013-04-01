@@ -7,17 +7,18 @@ require 'config.php';
 
 use \system\event;
 use \system\module;
-use \system\router;
+use \system\request;
 use \system\cache;
 
-event::listen();
-
-
 cache::getInstance();
-$router = router::getInstance();
-$controller = router::getController($router);
+scriptcache::$scripts = cache::get(scriptcache::key);
+
+$router = request::getInstance();
+$controller = request::getController($router);
 
 $controller->init();
 $controller->run();
 $controller->push();
 
+
+scriptcache::destruct();

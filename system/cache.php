@@ -35,6 +35,7 @@ final class cache implements \system\super\factory
 			}
 			self::$instance = new $classname(configure::$cache[$name]);
 		}
+
 		return self::$instance;
 	}
 
