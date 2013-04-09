@@ -10,11 +10,11 @@ use \system\library\htmlResource;
 <title><?php echo $this->title(); ?></title>
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-<?php if( isset($keywords) ): ?>
-<meta name="keywords" content="<?php echo is_array($keywords) ? join(',', $keywords) : $keywords;?>" />
+<?php if( isset($this->keywords) ): ?>
+<meta name="keywords" content="<?php echo is_array($this->keywords) ? join(',', $this->keywords) : $this->keywords;?>" />
 <?php endif; ?>
-<?php if( isset($description) ): ?>
-<meta name="description" content="<?php echo $description; ?>" />
+<?php if( isset($this->description) ): ?>
+<meta name="description" content="<?php echo $this->description; ?>" />
 <?php endif; ?>
 
 <?php echo htmlResource::create('system.css'); ?>

@@ -1,26 +1,26 @@
 <?php
 namespace system\super;
 
+use \system\super\controller;
+
 abstract class view
 {
-	protected $data = array();
 	protected $layout;
-		
-	public function &__get($name)
+	protected $controller;
+	
+	public function __construct(controller $controller)
 	{
-		if( array_key_exists($name, $this->data) ){
-			if( is_array($this->data[$name]) && is_callable($this->data[$name]) ){
-				$this->data[$name] = call_user_func($this->data[$name]);
-			}
-			return $this->data[$name];
-		}else{
-			echo ('View: '. $name .' Not found');
-		}
+		$this->controller = $controller;
 	}
 	
-	public function __set($name, $value)
+	public function &__get($name)
 	{
-		$this->data[$name] = $value;
+		return $this->controller->{$name};
+	}
+	
+	public function __isset($name)
+	{
+		return isset($this->controller->{$name});
 	}
 	
 	public function __toString()

@@ -2,7 +2,7 @@
 namespace application\controller;
 
 use \system\super\controller;
-use \application\model\getEventsList;
+use \application\model\siteConfig;
 
 final class index extends controller
 {
@@ -10,16 +10,15 @@ final class index extends controller
 	
 	public function init($params=null)
 	{
-		
+		parent::init();	
+		$this->site = new siteConfig;
+		$this->title = $this->site->getTitle();
+		$this->keywords = $this->site->getKeyword();
+		$this->description = $this->site->getDescription();
 	}
 	
 	public function run()
 	{
-		$test = new getEventsList;
-		
-		$max = $test->getMax();
-
-		$this->title = 'China News | China Forum | sports, business, arts, tours, law News';
 	}
 	
 	

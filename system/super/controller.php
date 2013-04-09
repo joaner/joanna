@@ -11,7 +11,12 @@ abstract class controller
 	public $output;	
 
 
-	abstract function init($params=null);
+	public function init($params=null)
+	{
+		define('VIEW', $this->view);
+		$this->view = "\\application\\view\\{$this->view}";
+		$this->view = new $this->view($this);
+	}
 	
 	abstract function run();
 	
@@ -19,9 +24,6 @@ abstract class controller
 	public function push()
 	{
 		if( ! is_null($this->view) ){
-			define('VIEW', $this->view);
-			$this->view = "\\application\\view\\{$this->view}";
-			$this->view = new $this->view($this);
 			$this->output = (string)$this->view;
 			event::outputBefore($this);
 			echo $this->output;

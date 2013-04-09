@@ -1,13 +1,9 @@
 <?php
 // @namespace \
-
-use \system\library\classPackage;
-use \system\cache;
-
-define('PATH', '/joanna');
+define('PATH', '/');
 define('DIR', __DIR__);
 
-define('STATIC_PATH', PATH.'/static');
+define('STATIC_PATH', PATH.'static');
 
 define('TMP_DIR', sys_get_temp_dir());
 define('TIME', time());
@@ -20,7 +16,17 @@ ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
 
 
+require 'system/event.php';
 require 'system/library/classPackage.php';
+
+use \system\library\classPackage;
+use \system\cache;
+use \system\request;
+
+cache::getInstance();
+$router = request::getInstance();
+$controller = request::getController($router);
+
 
 
 function __autoload($classname)

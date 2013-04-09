@@ -50,7 +50,7 @@ final class htmlResource implements library
   font-weight: 400;
   src: local('{$name} Regular'), url({$file}) format('woff');
 }
-</style>
+</style>\n
 style;
 	}
 }
