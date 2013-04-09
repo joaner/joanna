@@ -1,0 +1,80 @@
+
+html, body{
+margin:0px;
+}
+
+#container{
+background:#f2f2f2 url(background.png) repeat top center;
+}
+.clear{clear:both;}
+.row{
+width: 100%;
+max-width: 1076px;
+min-width: 755px;
+margin: 0 auto;
+background: #fff;
+}
+
+#header{
+height:130px;
+}
+
+#logo{
+float:left;
+}
+#logo h2{
+font:600 2em/2.1em 'julius sans one', 'Droid Serif', serif;
+margin:13px 12px; letter-spacing: -2px;
+}
+
+#header-nav ul, #footer-note ul{
+margin:0px auto; padding:0px; list-style:none; display: table; float: none; width: 100%;
+}
+
+
+#header-nav ul li, #footer-note ul li{
+margin:auto; display: table-cell;
+float: none; text-align:center;
+}
+#header-nav .color-line li{
+width:20%; height:4px;
+}
+#header-nav nav ul li{
+background-color:#000; border-left:1px solid #FFF;
+-webkit-transition: background-color .3s ease;
+-moz-transition: background-color .3s ease;
+transition: background-color .3s ease;
+}
+
+#header-nav ul li:hover{
+background-color:#333;
+}
+#header-nav ul li a, #footer-note ul li a{
+text-decoration:none; font:300 14px/32px 'Maven Pro', Sans, Verdana, 'julius sans one';
+display:block; height:32px;
+}
+
+#header-nav ul li a{
+color:#fff;
+}
+#header-nav ul li a:hover{
+color:#E0927A;
+}
+
+.row #article{
+width:73%; min-height:600px;
+}
+
+.row #sidebar{
+width:26%;
+}
+
+#footer-note{
+width:600px; margin:auto;
+}
+#footer-note ul li{
+border-top:1px solid rgb(166, 204, 164);
+}
+#footer-note ul li:hover{
+border-top-color:rgb(86, 105, 240);
+}

@@ -18,8 +18,13 @@ abstract class controller
 
 	public function push()
 	{
-		$this->output = (string)$this->view;
-		event::outputBefore($this);
-		echo $this->output;
+		if( ! is_null($this->view) ){
+			define('VIEW', $this->view);
+			$this->view = "\\application\\view\\{$this->view}";
+			$this->view = new $this->view($this);
+			$this->output = (string)$this->view;
+			event::outputBefore($this);
+			echo $this->output;
+		}
 	}
 }

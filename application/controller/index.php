@@ -2,16 +2,15 @@
 namespace application\controller;
 
 use \system\super\controller;
-
-use \application\view\metro;
 use \application\model\getEventsList;
 
 final class index extends controller
 {
+	protected $view = 'news';
 	
 	public function init($params=null)
 	{
-		$this->view = new metro;
+		
 	}
 	
 	public function run()
@@ -20,11 +19,7 @@ final class index extends controller
 		
 		$max = $test->getMax();
 
-		$this->view->title('index - '. $max);
-		$this->view->resource();
-		$this->view->header();
-		$this->view->article();
-		$this->view->footer();
+		$this->title = 'China News | China Forum | sports, business, arts, tours, law News';
 	}
 	
 	
