@@ -10,11 +10,12 @@ final class comment implements module
 	public function init($event)
 	{
 		$this->event = $event;
-		return true;
+		return false;
 	}
 
 	public function run($box)
 	{
+		return false;
 		switch($this->event){
 			case 'modelExecBefore':
 				$key = get_class($box).'::'.$box->method;

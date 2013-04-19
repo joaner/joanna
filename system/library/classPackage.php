@@ -14,9 +14,6 @@ final class classPackage implements library
 		if( class_exists($class, false) || interface_exists($class, false) ){
 			return ;
 		}
-		if( ! is_null(\scriptcache::$scripts) ){
-			\scriptcache::$update[] = $class;
-		}	
 
 		self::$file = self::file($class);
     	require self::$file;

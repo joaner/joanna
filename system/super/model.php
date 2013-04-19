@@ -6,7 +6,7 @@ use \system\exception\codeException;
 use \system\library\reflection;
 
 
-abstract class model
+abstract class model implements \system\super\event
 {
 	// cache expire time for second
 	public static $expiretime = 60;
@@ -16,23 +16,55 @@ abstract class model
 	
 	public function &__call($name, $param)
 	{
-		$this->method = $name;
-
-		$ref = new reflection($this, $this->method);
+		$ref = new reflection($this, $name);
 		if( !$ref->object->isProtected() ){
 			throw new CodeException();
 		}
-		
-		$this->value[$this->method] = $param;
+	
+		$this->setMethod($name);
+		$this->setParam($param);
+
 		event::modelExecBefore($this);
-		$this->value[$this->method] = $this->{$this->method}(
-					$this->value[$this->method]
-			);
+
+		$func = array($this, $this->getMethod());
+		$this->setResult( call_user_func($func, $this->getParam()) );
+
 		event::modelExecAfter($this);
+		return $this->getResult();
+	}
+
+
+	public function getMethod()
+	{
+		return $this->method;
+	}
+
+	public function getParam()
+	{
 		return $this->value[$this->method];
 	}
 
-	protected function &__skip__(&$value)
+	public function getResult()
+	{
+		return $this->value[$this->method];
+	}
+
+	public function setMethod($method)
+	{
+		$this->method = $method;
+	}
+
+	public function setParam($param)
+	{
+		$this->value[$this->method] = $param;
+	}
+
+	public function setResult($result)
+	{
+		$this->value[$this->method] = $result;
+	}
+
+	public function &_skip_(&$value)
 	{
 		return $value;
 	} 

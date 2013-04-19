@@ -11,7 +11,6 @@ use \system\request;
 use \system\cache;
 
 cache::getInstance();
-scriptcache::$scripts = cache::get(scriptcache::key);
 
 $router = request::getInstance();
 $controller = request::getController($router);
@@ -19,6 +18,3 @@ $controller = request::getController($router);
 $controller->init();
 $controller->run();
 $controller->push();
-
-
-scriptcache::destruct();
