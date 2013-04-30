@@ -10,6 +10,8 @@ use \system\module;
 use \system\request;
 use \system\cache;
 
+event::listen();
+
 cache::getInstance();
 
 $router = request::getInstance();

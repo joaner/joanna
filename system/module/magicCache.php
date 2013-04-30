@@ -13,6 +13,7 @@ final class magicCache implements module
 	{
 		$key = $this->getCacheKey($model);
 		if( $data = cache::get($key) ){
+			header("X-Cache: {$key}");
 			$model->setMethod('_skip_');
 			$model->setResult($data);
 		}
@@ -20,7 +21,7 @@ final class magicCache implements module
 
 	public function modelExecAfter(event $model)
 	{
-		if( $model->getMethod !== '_skip_' ){
+		if( $model->getMethod() !== '_skip_' ){
 			$key = $this->getCacheKey($model);
 			cache::set($key, $model->getResult());
 		}

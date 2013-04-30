@@ -40,17 +40,6 @@ final class configure
 		)
 	);
 
-	public static $event = array(
-		'outputBefore' => array(
-			'debug'// , 'gzip'
-			),
-		'modelExecBefore' => array(
-
-			),
-		'modelExecAfter' => array(
-			),
-	);
-
 	public static $cache = array(
 		'default' => 'file',
 		'file' => array(

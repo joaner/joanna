@@ -52,7 +52,19 @@ final class reflection implements library
 			return $this->comments[$name];
 		}
 		
-		
+	}
+
+	public function getMethods($filter = null)
+	{
+		if( $this->object instanceof \ReflectionClass){
+			if( !is_null($filter) ){
+				$const = 'ReflectionMethod::IS_'. strtoupper($filter);
+				if( defined($const) ){
+					$filter = constant($const);
+				}
+			}
+			return $this->object->getMethods($filter);
+		}
 	}
 	
 }

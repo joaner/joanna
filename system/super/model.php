@@ -14,7 +14,7 @@ abstract class model implements \system\super\event
 	public $value = array();
 
 	
-	public function &__call($name, $param)
+	public function __call($name, $param)
 	{
 		$ref = new reflection($this, $name);
 		if( !$ref->object->isProtected() ){
@@ -64,7 +64,7 @@ abstract class model implements \system\super\event
 		$this->value[$this->method] = $result;
 	}
 
-	public function &_skip_(&$value)
+	public function _skip_($value)
 	{
 		return $value;
 	} 

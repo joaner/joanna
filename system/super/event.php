@@ -11,5 +11,5 @@ interface event
 	public function setParam($param);
 	public function setResult($result);
 
-	public function &_skip_(&$value);
+	public function _skip_($value);
 }

@@ -7,17 +7,15 @@ final class module implements factory
 {
 	private static $instance = array();
 
-	public static function getInstance($name=null)
+	public static function getInstance($classname=null)
 	{
-		if( ! isset(self::$instance[$name]) ){
-			$classname = __CLASS__ .'\\'. $name;
+		if( ! isset(self::$instance[$classname]) ){
 			if( ! class_exists($classname) ){
 				return false;
 			}
-			self::$instance[$name] = new $classname;
+			self::$instance[$classname] = new $classname;
 		}
-
-		return self::$instance[$name];
+		return self::$instance[$classname];
 	} 
 
 }
