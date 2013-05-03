@@ -8,20 +8,29 @@ use \system\cache;
 
 final class magicCache implements module
 {
+	public function __minit()
+	{
+		return true;
+	}
+
+	public function __rinit()
+	{
+		return true;
+	}
 
 	public function modelExecBefore(event $model)
 	{
 		$key = $this->getCacheKey($model);
 		if( $data = cache::get($key) ){
 			header("X-Cache: {$key}");
-			$model->setMethod('_skip_');
+			$model->setMethod(MAGIC_SKIP);
 			$model->setResult($data);
 		}
 	}
 
 	public function modelExecAfter(event $model)
 	{
-		if( $model->getMethod() !== '_skip_' ){
+		if( $model->getMethod() !== MAGIC_SKIP ){
 			$key = $this->getCacheKey($model);
 			cache::set($key, $model->getResult());
 		}

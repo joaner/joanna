@@ -6,12 +6,18 @@ use \system\super\controller;
 
 final class debug implements module
 {
-	public function init($event)
+
+	public function __minit()
+	{
+		return true;
+	}
+
+	public function __rinit()
 	{
 		return !headers_sent();
 	}
 
-	public function run($controller)
+	public function outputBefore(controller $controller)
 	{
 		header('X-Runtime: '. round((microtime(true)-START_TIME)*1000, 1) );
 		header('X-Included-Files: '. count(get_included_files()) );
@@ -20,6 +26,7 @@ final class debug implements module
 		foreach($included as &$file){
 			$file = str_replace(DIR, '', $file);
 		}
-		str_replace('</body>', implode(PHP_EOL, $included)."\n</body>", $controller->output);
+		$controller->output = str_replace('</body>', implode(PHP_EOL, $included)."\n</body>", $controller->output);
+		return true;
 	}
 }

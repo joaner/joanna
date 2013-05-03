@@ -2,7 +2,6 @@
 // @namespace \
 
 use \system\library\classPackage;
-use \system\cache;
 
 define('PATH', '/joanna');
 define('DIR', __DIR__);

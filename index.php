@@ -10,9 +10,9 @@ use \system\module;
 use \system\request;
 use \system\cache;
 
-event::listen();
-
 cache::getInstance();
+
+event::listen();
 
 $router = request::getInstance();
 $controller = request::getController($router);
